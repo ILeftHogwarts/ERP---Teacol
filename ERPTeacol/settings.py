@@ -38,7 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls',
-    'django-tables2'
 ]
 
 MIDDLEWARE = [
