@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import CustomerRecord
+from .models import TheatreInfo
 # Register your models here.
 
-admin.site.register(CustomerRecord)
+admin.site.register(TheatreInfo)

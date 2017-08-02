@@ -1,28 +1,9 @@
-
-<html>
-    <head>
-        <style>
-            h1{font-size: 20px; color: rebeccapurple}
-        </style>
-    </head>
-    <body>
-        <h1>Hello world!</h1>
-        <table>
-            <tr>
-                <th>
-                    <dir>
-                        Wellcome to DB work page!
-                    </dir>
-                    <dir>
-
-                    </dir>
-                </th>
-            </tr>
-            {% for col in cols %}
-                <tr>
-                    
-                </tr>
-            {% endfor %}
-        </table>
-    </body>
-</html>
+{% if theatre_info_list %}
+    <ul>
+        {% for performance in theatre_info_list %}
+            <li> performance.performance </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p> No polls available </p>
+{% endif %}
