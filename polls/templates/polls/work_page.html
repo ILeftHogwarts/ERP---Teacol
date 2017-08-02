@@ -1,8 +1,6 @@
 {% if theatre_info_list %}
     <ul>
-        {% for performance in theatre_info_list %}
-            <li> performance.performance </li>
-        {% endfor %}
+        <h1>{{theatre_info_list.objects.all}}</h1>
     </ul>
 {% else %}
     <p> No polls available </p>

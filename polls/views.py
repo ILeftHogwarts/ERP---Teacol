@@ -10,8 +10,5 @@ def index(request):
 
 def work_page(request):
     theatre_info_list = TheatreInfo.objects.all()
-    template = loader.get_template('polls/work_page.html')
-    context = RequestContext(request, {
-        'theatre_info_list': theatre_info_list,
-    })
-    return HttpResponse(template.render(context))
+    context = {'theatre_info_list' : theatre_info_list}
+    return render(request, 'polls/work_page.html', context)
