@@ -1,6 +1,8 @@
-{% if theatre_info_list %}
+{% if customer_record_list %}
     <ul>
-        <h1>{{theatre_info_list.objects.all}}</h1>
+        {% for customer in customer_record_list %}
+            <li>{{customer.name}}--{{customer.phone}}--{{customer.adress}}</li>
+        {% endfor %}
     </ul>
 {% else %}
     <p> No polls available </p>

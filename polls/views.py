@@ -3,12 +3,15 @@ from django.views.generic import ListView
 from django.template import RequestContext, loader
 from django.http import HttpResponse
 from .models import TheatreInfo
+from django.views import generic
+
+from .models import CustomerRecord
 # Create your views here.
 
-def index(request):
-    return render(request, 'polls/work_page.html',{})
 
-def work_page(request):
-    theatre_info_list = TheatreInfo.objects.all()
-    context = {'theatre_info_list' : theatre_info_list}
-    return render(request, 'polls/work_page.html', context)
+class WorkPageView(generic.ListView):
+    tamp_name = 'polls/work_page.html'
+    context_object_name = 'clients_records_list'
+
+    def get_records(self):
+        return CustomerRecord.objects.all()
