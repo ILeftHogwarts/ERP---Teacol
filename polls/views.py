@@ -5,13 +5,18 @@ from django.http import HttpResponse
 from .models import TheatreInfo
 from django.views import generic
 
-from .models import CustomerRecord
+from .models import CustomerRecord, TheatreInfo
 # Create your views here.
 
 
-class WorkPageView(generic.ListView):
-    tamp_name = 'polls/work_page.html'
-    context_object_name = 'clients_records_list'
 
-    def get_records(self):
-        return CustomerRecord.objects.all()
+class WorkPageView(generic.ListView):
+    template_name = 'polls/work_page.html'
+    context_object_name = 'clients_records_list'
+    queryset = CustomerRecord.objects.all()
+    
+    def get_context_data(self, **kwargs):
+        context = super(WorkPageView,self).get_context_data(**kwargs)
+        context['theatre_info_list'] = TheatreInfo.objects.all()
+        return context
+

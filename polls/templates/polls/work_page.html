@@ -1,9 +1,38 @@
-{% if customer_record_list %}
-    <ul>
-        {% for customer in customer_record_list %}
-            <li>{{customer.name}}--{{customer.phone}}--{{customer.adress}}</li>
-        {% endfor %}
-    </ul>
-{% else %}
-    <p> No polls available </p>
-{% endif %}
+<div style="padding: 10px; background-color:darkturquoise; width: 100%; height: 200px">
+    <h1> Some form here</h1>
+    {% if theatre_info_list %}
+    <form action="" method="GET"></form>
+        <select>
+            {% for theatreinfo in theatre_info_list%}
+                    <option value="preformance">{{theatreinfo.preformance}}</option>
+            {% endfor %}
+        </select>
+        <select>
+            {% for theatreinfo in theatre_info_list%}
+                    <option value="price">{{theatreinfo.price}}</option>
+            {% endfor %}
+        </select>
+        <select>
+            {% for theatreinfo in theatre_info_list%}
+                    <option value="places">{{theatreinfo.places}}</option>
+            {% endfor %}
+        </select>
+    {% else %}
+        <p> No theatre information </p>
+    {% endif %}
+</div>
+<div>
+    {% if clients_records_list %}
+        <table border="1" style="width: 100%; text-align:center">
+            {% for customer in clients_records_list %}
+                <tr>
+                    <td>{{customer.name}}</td>
+                    <td>{{customer.phone}}</td>
+                    <td>{{customer.adress}}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p> No polls available </p>
+    {% endif %}
+</div>
