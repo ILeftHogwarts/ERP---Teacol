@@ -20,3 +20,5 @@ class WorkPageView(generic.ListView):
         context['theatre_info_list'] = TheatreInfo.objects.all()
         return context
 
+def result(request,pref,price,place):
+    customers = CustomerRecord.objects.filter()
