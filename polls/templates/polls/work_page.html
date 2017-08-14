@@ -1,3 +1,8 @@
+<style>
+    table.exterior{border: 2px ridge darkblue; width: 100%; text-align: center}
+    table.interior{text-align: center; width: 100%; margin-left: 40px}
+    th{border: 1px solid}
+</style>
 <div style="padding: 10px; background-color:darkturquoise; width: 100%; height: 200px">
     <h1> Some form here</h1>
     {% if theatre_info_list %}
@@ -26,12 +31,25 @@
 </div>
 <div>
     {% if clients_records_list %}
-        <table border="1" style="width: 100%; text-align:center">
+        <table class="exterior">
             {% for customer in clients_records_list %}
                 <tr>
                     <td>{{customer.name}}</td>
                     <td>{{customer.phone}}</td>
                     <td>{{customer.adress}}</td>
+                    <tr>
+                        <th colspan="3">
+                            <table cellpadding = "2" class="interior">
+                                {%for order in customer.orders.all%}
+                                <tr>
+                                    <td>{{order.preformance}}</td>
+                                    <td>{{order.price}}</td>
+                                    <td>{{order.places}}</td>
+                                </tr>  
+                                {%endfor%}
+                            </table>
+                        </th>
+                    </tr>
                 </tr>
             {% endfor %}
         </table>

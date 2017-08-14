@@ -13,7 +13,6 @@ class TheatreInfo(models.Model):
         return self.preformance + ' ' + self.places
 
 
-
 class CustomerRecord(models.Model):
     name = models.CharField(max_length = 100)
     phone = models.CharField(max_length = 15, primary_key = True)
