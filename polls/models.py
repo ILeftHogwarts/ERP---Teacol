@@ -9,9 +9,6 @@ class TheatreInfo(models.Model):
     places = models.CharField(max_length = 50)
     price = models.CharField(max_length = 50)
 
-    def __str__(self):
-        return self.preformance + ' ' + self.places
-
 
 class CustomerRecord(models.Model):
     name = models.CharField(max_length = 100)

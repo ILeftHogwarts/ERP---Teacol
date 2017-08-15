@@ -2,7 +2,6 @@ from django.shortcuts import render
 from django.views.generic import ListView
 from django.template import RequestContext, loader
 from django.http import HttpResponse
-from .models import TheatreInfo
 from django.views import generic
 from .form import SelectForm
 from .models import CustomerRecord, TheatreInfo
@@ -21,6 +20,5 @@ class WorkPageView(generic.ListView):
         return context
 
 def select_table(request):
-    if request.method == "GET":
-        form = SelectForm(request.GET)
-        return render(request, 'polls/select_table.html', {'form', form})
+    form = SelectForm(request.GET)
+    return render(request, 'polls/select_table.html', {'form': form})
