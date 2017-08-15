@@ -5,8 +5,9 @@
 </style>
 <div style="padding: 10px; background-color:darkturquoise; width: 100%; height: 200px">
     <h1> Some form here</h1>
+    {% comment %} 
     {% if theatre_info_list %}
-    <form action="{% url 'polls:result' customer.customerorders__pref}" method="GET">
+   <form action="{% url 'polls:result' preformance price places%}" method="GET">
         {% csrf_token %}
         <select>
             {% for theatreinfo in theatre_info_list%}
@@ -23,11 +24,14 @@
                     <option value="places">{{theatreinfo.places}}</option>
             {% endfor %}
         </select>
-        <input type="submit" value="result">
-    </form>
+        <input type="submit" value="Search">
+    </form> 
+    
     {% else %} 
         <p> No theatre information </p>
     {% endif %}
+    {% endcomment %}
+    <a href="{% url 'select_table' %}" class=""></a>
 </div>
 <div>
     {% if clients_records_list %}

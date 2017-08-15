@@ -1,0 +1,28 @@
+{% extends "polls/work_page.html" %}
+{% block content %}
+    <{% if theatre_info_list %}
+    <form action="{% url 'polls:result' preformance price places%}" method="GET">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <select>
+            {% for theatreinfo in theatre_info_list%}
+                    <option value="preformance">{{theatreinfo.preformance}}</option>
+            {% endfor %}
+        </select>
+        <select>
+            {% for theatreinfo in theatre_info_list%}
+                    <option value="price">{{theatreinfo.price}}</option>
+            {% endfor %}
+        </select>
+        <select>
+            {% for theatreinfo in theatre_info_list%}
+                    <option value="places">{{theatreinfo.places}}</option>
+            {% endfor %}
+        </select>
+        <input type="submit" value="Search">
+    </form> 
+    
+    {% else %} 
+        <p> No theatre information </p>
+    {% endif %}
+{% endblock content %}

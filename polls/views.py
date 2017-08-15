@@ -4,7 +4,7 @@ from django.template import RequestContext, loader
 from django.http import HttpResponse
 from .models import TheatreInfo
 from django.views import generic
-
+from .form import SelectForm
 from .models import CustomerRecord, TheatreInfo
 # Create your views here.
 
@@ -20,5 +20,7 @@ class WorkPageView(generic.ListView):
         context['theatre_info_list'] = TheatreInfo.objects.all()
         return context
 
-def result(request,pref,price,place):
-    customers = CustomerRecord.objects.filter()
+def select_table(request):
+    if request.method == "GET":
+        form = SelectForm(request.GET)
+        return render(request, 'polls/select_table.html', {'form', form})
