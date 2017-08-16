@@ -20,5 +20,14 @@ class WorkPageView(generic.ListView):
         return context
 
 def select_table(request):
-    form = SelectForm(request.GET)
-    return render(request, 'polls/select_table.html', {'form': form})
+    if request.method == "GET":   
+        form = SelectForm(request.GET)
+        if form.is_valid():
+            clients_records_list = CustomerRecord.objects.filter(
+                orders__preformance = form.cleaned_data["preformance"], 
+                orders__price = form.cleaned_data["price"],
+                orders__places = form.cleaned_data["places"]
+                )
+        else:
+            clients_records_list = CustomerRecord.objects.all()
+    return render(request, 'polls/select_table.html', {'form': form,'clients_records_list':clients_records_list})
