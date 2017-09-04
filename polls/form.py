@@ -2,6 +2,12 @@ from django import forms
 from .models import TheatreInfo
 
 class SelectForm(forms.Form):
-        preformance = forms.ModelChoiceField(queryset = TheatreInfo.objects.values_list('preformance',flat = True),required=False,empty_label="")
-        price = forms.ModelChoiceField(queryset = TheatreInfo.objects.values_list('price',flat = True),required=False,empty_label="")
-        places = forms.ModelChoiceField(queryset = TheatreInfo.objects.values_list('places',flat = True),required=False,empty_label="")
+        preformance = forms.ChoiceField(choices = [], required=False)
+        price = forms.ChoiceField(choices = [], required=False)
+        places = forms.ChoiceField(choices = [], required=False)
+
+        def __init__(self, *args, **kwargs):
+                super(SelectForm, self).__init__(*args,**kwargs)
+                self.fields['preformance'].choices = [(' ', 'All preformances')] + [(pref.preformance,pref.preformance) for pref in TheatreInfo.objects.all()]
+                self.fields['price'].choices = [(' ', 'All prices')] + [(price.price, price.price) for price in TheatreInfo.objects.all()]
+                self.fields['places'].choices = [(' ', 'All places')] + [(places.places, places.places) for places in TheatreInfo.objects.all()]

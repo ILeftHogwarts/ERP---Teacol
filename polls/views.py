@@ -22,12 +22,16 @@ class WorkPageView(generic.ListView):
 def select_table(request):
     if request.method == "GET":   
         form = SelectForm(request.GET)
-        if form.is_valid():
-            clients_records_list = CustomerRecord.objects.filter(
-                orders__preformance = form.cleaned_data["preformance"], 
-                orders__price = form.cleaned_data["price"],
-                orders__places = form.cleaned_data["places"]
-                )
-        else:
-            clients_records_list = CustomerRecord.objects.all()
-    return render(request, 'polls/select_table.html', {'form': form,'clients_records_list':clients_records_list})
+        pref = request.GET.get('preformance')
+        price = request.GET.get('price')
+        places = request.GET.get('places')
+        clients_records_list = CustomerRecord.objects.all()
+        if pref != ' ' and pref != None:
+            clients_records_list = clients_records_list.filter(orders__preformance = pref)
+        if price != ' ' and price != None:
+            clients_records_list = clients_records_list.filter(orders__price = price)
+        if places != ' ' and places != None:
+            clients_records_list = clients_records_list.filter(orders__places = places) 
+    else:
+        form = SelectForm()
+    return render(request, 'polls/work_page.html', {'form': form,'clients_records_list':clients_records_list})
